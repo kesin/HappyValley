@@ -17,7 +17,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    @article.category_id = params[:category_id].first.to_i
+    # @article.category_id = params[:category_id].first.to_i
 
     respond_to do |format|
       if @article.save
@@ -57,7 +57,7 @@ class ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:name, :body)
+    params.require(:article).permit(:name, :body, :category_id)
   end
 
 end

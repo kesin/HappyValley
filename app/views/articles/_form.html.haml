@@ -13,7 +13,7 @@
     %label.control-label.col-lg-2
       Category
     .col-lg-10
-      = select(:category_id, nil, options_for_select(Category.pluck(:name,:id)), {}, class:'ui dropdown')
+      = f.select(:category_id, options_for_select(Category.pluck(:name,:id)), {}, class:'ui dropdown')
   .form-group
     .col-lg-offset-2.col-lg-10
       = f.submit nil,class: 'btn btn-primary'
