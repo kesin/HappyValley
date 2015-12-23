@@ -13,7 +13,10 @@
 ### 功能特点
 
 1,创建article和category
+
 2,可以对article进行category分类
+
 3,可以查看article的编辑更改历史
+
 4,可以从历史将article恢复到某一版本
 
