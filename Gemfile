@@ -25,7 +25,8 @@ gem 'haml-rails'
 # annotate model
 gem 'annotate'
 
-
+# Use rugged for version control
+gem 'rugged', git: 'git://github.com/libgit2/rugged.git', submodules: true
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
