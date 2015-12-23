@@ -10,4 +10,5 @@
 
 class Category < ActiveRecord::Base
   has_many :articles
+  serialize :version, Array
 end

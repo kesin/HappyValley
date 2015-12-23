@@ -12,4 +12,5 @@
 
 class Article < ActiveRecord::Base
   belongs_to :category
+  serialize :version, Array
 end

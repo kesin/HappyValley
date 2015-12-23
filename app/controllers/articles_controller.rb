@@ -8,6 +8,14 @@ class ArticlesController < ApplicationController
   def show
   end
 
+  def history
+    @article = Article.find params[:id]
+  end
+
+  def his_detail
+
+  end
+
   def new
     @article = Article.new
   end
@@ -17,10 +25,15 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    # @article.category_id = params[:category_id].first.to_i
 
     respond_to do |format|
       if @article.save
+
+        content = Marshal.dump([@article.name, @article.body, @article.category_id])
+        version = add_content_to_file('article',content,@article.id)
+        @article.version.push(version)
+        @article.save
+
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
         format.json { render :show, status: :created, location: @article }
       else
@@ -33,6 +46,12 @@ class ArticlesController < ApplicationController
   def update
     respond_to do |format|
       if @article.update(article_params)
+
+        content = Marshal.dump([@article.name, @article.body, @article.category_id])
+        version = add_content_to_file('article',content,@article.id)
+        @article.version.push(version)
+        @article.save
+
         format.html { redirect_to @article, notice: 'Article was successfully updated.' }
         format.json { render :show, status: :ok, location: @article }
       else

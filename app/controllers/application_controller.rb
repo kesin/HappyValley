@@ -19,7 +19,6 @@ class ApplicationController < ActionController::Base
     options[:parents] = repo.empty? ? [] : [ repo.head.target ].compact
     options[:update_ref] = 'HEAD'
 
-    test = Rugged::Commit.create(repo, options)
-    Rails.logger.error test
+    Rugged::Commit.create(repo, options)
   end
 end

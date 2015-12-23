@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   root 'articles#index'
   resources :categories
-  resources :articles
+  resources :articles do
+    member do
+      get 'history'
+      get 'his_detail'
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,19 @@
+- model_class = Article
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.titleize
+
+%p
+  %strong= model_class.human_attribute_name(:name) + ':'
+  %br
+  = @his_article.name
+%p
+  %strong= model_class.human_attribute_name(:body) + ':'
+  %br
+  = @his_article.body
+%p
+  %strong= 'Category:'
+  %br
+  = @his_article.category.name
+
+
+= link_to '恢复到此版本', edit_article_path(@article), :class => 'btn btn-default'

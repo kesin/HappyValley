@@ -1,0 +1,12 @@
+.page-header
+  %h1=@article.name
+%table.table.table-striped
+  %thead
+    %tr
+      %th= '版本'
+      %th= '操作'
+  %tbody
+    - @article.version.each do |v|
+      %tr
+        %td= link_to v, his_detail_article_path(:version => v), :target => '_blank'
+        %td= link_to '恢复到此版本',"#"
