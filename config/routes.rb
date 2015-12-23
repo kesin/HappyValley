@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     member do
       get 'history'
       get 'his_detail'
+      post 'back_version'
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

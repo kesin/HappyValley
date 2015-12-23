@@ -5,15 +5,15 @@
 %p
   %strong= model_class.human_attribute_name(:name) + ':'
   %br
-  = @his_article.name
+  = @his_article[0]
 %p
   %strong= model_class.human_attribute_name(:body) + ':'
   %br
-  = @his_article.body
+  = @his_article[1]
 %p
   %strong= 'Category:'
   %br
-  = @his_article.category.name
+  = Category.find(@his_article[2]).name
 
 
-= link_to '恢复到此版本', edit_article_path(@article), :class => 'btn btn-default'
+= link_to '恢复到此版本', back_version_article_path(@article,:version => params[:version]), :method => "post", :class => 'btn btn-default'

@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_article, only: [:show, :edit, :update, :destroy, :his_detail, :back_version]
 
   def index
     @articles = Article.all
@@ -13,7 +13,23 @@ class ArticlesController < ApplicationController
   end
 
   def his_detail
+    repo = Rugged::Repository.new("version_repo/article")
+    commit = repo.lookup(params[:version])
+    blob = repo.lookup(commit.tree["#{params[:id]}"][:oid])
+    @his_article = Marshal.load blob.content
+  end
 
+  def back_version
+    repo = Rugged::Repository.new("version_repo/article")
+    commit = repo.lookup(params[:version])
+    blob = repo.lookup(commit.tree["#{params[:id]}"][:oid])
+    @his_article = Marshal.load blob.content
+    @article.name = @his_article[0]
+    @article.body = @his_article[1]
+    @article.category_id = @his_article[2]
+    if @article.save
+      redirect_to @article, notice: '恢复成功!'
+    end
   end
 
   def new
