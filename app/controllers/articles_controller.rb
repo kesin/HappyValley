@@ -17,6 +17,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    @article.category_id = params[:category_id].first.to_i
 
     respond_to do |format|
       if @article.save
