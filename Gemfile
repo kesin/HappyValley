@@ -14,6 +14,17 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
+# Use BootStrap
+gem 'therubyracer'
+gem 'less-rails'
+gem 'twitter-bootstrap-rails'
+
+gem 'haml'
+gem 'haml-rails'
+
+# annotate model
+gem 'annotate'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
