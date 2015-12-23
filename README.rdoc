@@ -1,28 +1,19 @@
-== README
+#### 简介
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+使用Git的特性开发的一个可以查看和回退到特定版本的简单文章系统
 
-Things you may want to cover:
+#### 使用方法
 
-* Ruby version
+`git clone git@github.com:kesin/HappyValley.git`
 
-* System dependencies
+`bundle install`
 
-* Configuration
+`rails s`
 
-* Database creation
+### 功能特点
 
-* Database initialization
+1,创建article和category
+2,可以对article进行category分类
+3,可以查看article的编辑更改历史
+4,可以从历史将article恢复到某一版本
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
