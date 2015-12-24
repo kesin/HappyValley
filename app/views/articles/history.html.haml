@@ -17,5 +17,5 @@
         %td= version.content[1]
         %td= Category.find(version.content[2]).name
         %td= version.created_at
-        %td= link_to 'View this version', his_detail_article_path(:version => version.version_id), :target => '_blank'
-        -#%td= link_to '恢复到此版本',back_version_article_path(@article,:version => v), :method => "post"
+        %td= link_to 'View this version', his_detail_article_path(:version => version.id), :target => '_blank'
+        -#%td= link_to 'Back to this version',back_version_article_path(@article,:version => version.id), :method => "post"

@@ -13,11 +13,11 @@ class ArticlesController < ApplicationController
   end
 
   def his_detail
-    @his_article = Version.find_by_version_id(params[:version]).content
+    @his_article = Version.find_by_id(params[:version]).content
   end
 
   def back_version
-    @his_article = Version.find_by_version_id(params[:version]).content
+    @his_article = Version.find_by_id(params[:version]).content
     @article.name = @his_article[0]
     @article.body = @his_article[1]
     @article.category_id = @his_article[2]
