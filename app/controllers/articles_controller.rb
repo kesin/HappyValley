@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy, :history, :his_detail]
+  before_action :set_article, only: [:show, :edit, :update, :destroy, :history, :his_detail, :back_version]
 
   def index
     @articles = Article.all
@@ -14,6 +14,23 @@ class ArticlesController < ApplicationController
 
   def his_detail
     @his_article = Version.find_by_version_id(params[:version]).content
+  end
+
+  def back_version
+    @his_article = Version.find_by_version_id(params[:version]).content
+    @article.name = @his_article[0]
+    @article.body = @his_article[1]
+    @article.category_id = @his_article[2]
+    if @article.save
+      version = Version.new(
+          type_name: 'article',
+          type_id: @article.id,
+          content: [@article.name, @article.body, @article.category_id],
+          version_id: @article.article_version_max + 1
+      )
+      version.save
+      redirect_to @article, notice: '恢复成功!'
+    end
   end
 
   def new
