@@ -1,0 +1,21 @@
+.page-header
+  %h1=@article.name
+%table.table.table-striped
+  %thead
+    %tr
+      %th= 'Version'
+      %th= 'Name'
+      %th= 'Body'
+      %th= 'Catagory'
+      %th= 'Time'
+      %th= '操作'
+  %tbody
+    - @versions.each do |version|
+      %tr
+        %td= version.version_id
+        %td= version.content[0]
+        %td= version.content[1]
+        %td= Category.find(version.content[2]).name
+        %td= version.created_at
+        %td= link_to 'View this version', his_detail_article_path(:version => version.version_id), :target => '_blank'
+        -#%td= link_to '恢复到此版本',back_version_article_path(@article,:version => v), :method => "post"

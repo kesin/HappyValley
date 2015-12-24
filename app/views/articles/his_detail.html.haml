@@ -1,0 +1,19 @@
+- model_class = Article
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.titleize
+
+%p
+  %strong= model_class.human_attribute_name(:name) + ':'
+  %br
+  = @his_article[0]
+%p
+  %strong= model_class.human_attribute_name(:body) + ':'
+  %br
+  = @his_article[1]
+%p
+  %strong= 'Category:'
+  %br
+  = Category.find(@his_article[2]).name
+
+
+= link_to '恢复到此版本', back_version_article_path(@article,:version => params[:version]), :method => "post", :class => 'btn btn-default'

@@ -1,11 +1,19 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_article, only: [:show, :edit, :update, :destroy, :history, :his_detail]
 
   def index
     @articles = Article.all
   end
 
   def show
+  end
+
+  def history
+    @versions = @article.versions.order('created_at DESC')
+  end
+
+  def his_detail
+    @his_article = Version.find_by_version_id(params[:version]).content
   end
 
   def new
@@ -21,6 +29,13 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
+        version = Version.new(
+                             type_name: 'article',
+                             type_id: @article.id,
+                             content: [@article.name, @article.body, @article.category_id],
+                             version_id: 1
+        )
+        version.save
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
         format.json { render :show, status: :created, location: @article }
       else
@@ -33,6 +48,13 @@ class ArticlesController < ApplicationController
   def update
     respond_to do |format|
       if @article.update(article_params)
+        version = Version.new(
+            type_name: 'article',
+            type_id: @article.id,
+            content: [@article.name, @article.body, @article.category_id],
+            version_id: @article.article_version_max + 1
+        )
+        version.save
         format.html { redirect_to @article, notice: 'Article was successfully updated.' }
         format.json { render :show, status: :ok, location: @article }
       else
