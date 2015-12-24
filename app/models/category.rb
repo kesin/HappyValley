@@ -10,4 +10,5 @@
 
 class Category < ActiveRecord::Base
   has_many :articles
+  has_many :versions, -> { where(versions: { type_name: "category"}) } ,foreign_key: "type_id", dependent: :destroy
 end
