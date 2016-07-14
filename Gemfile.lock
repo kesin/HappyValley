@@ -6,7 +6,7 @@ GIT
     rugged (0.24.0b11)
 
 GEM
-  remote: https://ruby.taobao.org/
+  remote: https://rubygems.org/
   specs:
     actionmailer (4.1.13)
       actionpack (= 4.1.13)
